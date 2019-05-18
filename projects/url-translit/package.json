@@ -1,0 +1,16 @@
+{
+  "name": "@kolkov/url-translit",
+  "version": "0.0.1",
+  "author": "Andrey Kolkov <a.kolkov@gmail.com>",
+  "repository": "https://github.com/kolkov/url-translit",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+  },
+  "keywords": [
+    "angular",
+    "translit",
+    "URL",
+    "translit to URL"
+  ]
+}

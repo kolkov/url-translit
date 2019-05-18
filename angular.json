@@ -1,0 +1,155 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "url-translit": {
+      "projectType": "library",
+      "root": "projects/url-translit",
+      "sourceRoot": "projects/url-translit/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/url-translit/tsconfig.lib.json",
+            "project": "projects/url-translit/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/url-translit/src/test.ts",
+            "tsConfig": "projects/url-translit/tsconfig.spec.json",
+            "karmaConfig": "projects/url-translit/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/url-translit/tsconfig.lib.json",
+              "projects/url-translit/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "url-translit-app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/url-translit-app",
+      "sourceRoot": "projects/url-translit-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/url-translit-app",
+            "index": "projects/url-translit-app/src/index.html",
+            "main": "projects/url-translit-app/src/main.ts",
+            "polyfills": "projects/url-translit-app/src/polyfills.ts",
+            "tsConfig": "projects/url-translit-app/tsconfig.app.json",
+            "assets": [
+              "projects/url-translit-app/src/favicon.ico",
+              "projects/url-translit-app/src/assets"
+            ],
+            "styles": [
+              "projects/url-translit-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/url-translit-app/src/environments/environment.ts",
+                  "with": "projects/url-translit-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "url-translit-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "url-translit-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "url-translit-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/url-translit-app/src/test.ts",
+            "polyfills": "projects/url-translit-app/src/polyfills.ts",
+            "tsConfig": "projects/url-translit-app/tsconfig.spec.json",
+            "karmaConfig": "projects/url-translit-app/karma.conf.js",
+            "assets": [
+              "projects/url-translit-app/src/favicon.ico",
+              "projects/url-translit-app/src/assets"
+            ],
+            "styles": [
+              "projects/url-translit-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/url-translit-app/tsconfig.app.json",
+              "projects/url-translit-app/tsconfig.spec.json",
+              "projects/url-translit-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/url-translit-app/e2e/protractor.conf.js",
+            "devServerTarget": "url-translit-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "url-translit-app:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "url-translit-app"
+}
