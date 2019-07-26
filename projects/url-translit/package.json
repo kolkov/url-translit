@@ -5,6 +5,7 @@
   "repository": "https://github.com/kolkov/url-translit",
   "license": "MIT",
   "private": false,
+  "description": "Library helper for translit text for url",
   "peerDependencies": {
   },
   "keywords": [
